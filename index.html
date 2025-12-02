@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 포트폴리오 쇼케이스</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Inter 폰트 설정 */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        /* Serif 폰트 (Value High Dividend 용) */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            /* 배경색을 부드러운 대각선 그라데이션으로 변경 */
+            background: linear-gradient(to bottom right, #f7f4f0, #e0dcd7); 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* --- Custom Scrollbar and Smooth Scroll Styles --- */
+        #project-list-container {
+            /* 스크롤 시 부드러운 움직임 적용 */
+            scroll-behavior: smooth;
+        }
+
+        /* Webkit (Chrome, Safari, Edge) 스크롤바 디자인 */
+        #project-list-container::-webkit-scrollbar {
+            width: 8px; /* 스크롤바 너비 */
+        }
+        #project-list-container::-webkit-scrollbar-track {
+            background: #e0dcd7; /* 스크롤바 트랙 색상 (배경색과 유사) */
+            border-radius: 10px;
+        }
+        #project-list-container::-webkit-scrollbar-thumb {
+            background-color: #6b7c58; /* 스크롤바 썸 색상 (테마 색상) */
+            border-radius: 10px;
+        }
+        /* --- End Custom Scrollbar Styles --- */
+
+        
+        /* 상세 정보 아코디언 애니메이션 (탄력 있는 효과 적용) */
+        .details-wrapper {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            /* 탄력 있는 움직임을 위한 cubic-bezier 설정 (overshoot 효과) */
+            transition: max-height 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease-out;
+        }
+        .details-wrapper.open {
+            max-height: 200px; /* 충분한 높이 설정 */
+            opacity: 1;
+            margin-top: 0.5rem;
+        }
+
+        /* 메인 이미지 부드러운 전환 */
+        .image-details-container {
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        /* CTA 버튼 호버 효과 */
+        .cta-button {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .cta-button:hover {
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.5);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div id="main-content" class="container mx-auto px-4 md:px-12 flex-grow">
+        
+        <!-- 헤더 -->
+        <header class="flex justify-between items-center py-8">
+            <p class="text-xl font-bold text-[#6b7c58]">포트폴리오</p>
+            <nav>
+                <ul class="flex space-x-8 text-gray-500 font-medium text-sm">
+                    <li><a href="#" class="hover:text-[#6b7c58] transition-colors">홈페이지</a></li>
+                    <li><a href="#" class="hover:text-[#6b7c58] transition-colors">견적문의</a></li>
+                    <li><a href="#" class="hover:text-[#6b7c58] transition-colors">고객센터</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="grid grid-cols-1 lg:grid-cols-2 gap-12 pt-8">
+            
+            <!-- 왼쪽: 프로젝트 리스트 (스크롤바 디자인 적용) -->
+            <div class="lg:pr-12">
+                <!-- no-scrollbar 클래스 제거 -->
+                <div id="project-list-container" class="h-[750px] overflow-y-scroll pr-2 pb-20"> 
+                    <div id="project-list-wrapper" class="flex flex-col">
+                        <!-- JS 리스트 렌더링 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 오른쪽: 이미지 및 버튼 미리보기 -->
+            <div class="relative flex flex-col items-center pt-4 lg:sticky lg:top-8 h-fit"> 
+                <div id="image-details-container" class="image-details-container w-full flex flex-col items-center">
+                    
+                    <!-- 이미지 박스 -->
+                    <div id="capture-image-box" class="w-full aspect-video bg-gray-300 shadow-2xl rounded-sm overflow-hidden relative">
+                        <img id="current-project-img" 
+                             src="https://placehold.co/1000x600/6b7c58/ffffff?text=Loading..." 
+                             onerror="this.onerror=null; this.src='https://placehold.co/1000x600/94a3b8/ffffff?text=Image+Load+Error'"
+                             alt="Project Image" class="w-full h-full object-cover">
+                    </div>
+
+                    <!-- 사이트 바로가기 버튼 (이미지 하단 중앙 배치) -->
+                    <div class="mt-8">
+                        <a id="project-direct-link" href="#" target="_blank" class="flex items-center justify-center px-12 py-4 bg-[#0056b3] text-white text-lg font-bold rounded-full hover:bg-[#004494] transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
+                            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            사이트 바로가기
+                        </a>
+                    </div>
+
+                    <!-- 우측 하단 텍스트 설명 (버튼 밑) -->
+                    <div class="mt-8 text-center w-full border-t border-gray-200 pt-6">
+                         <div class="text-sm font-bold text-gray-800 mb-2">Value: High Dividend</div>
+                         <div class="text-gray-600 text-sm leading-relaxed" id="right-side-desc">
+                             신영밸류배당증권투자신탁(주식) 운용<br>
+                             <span id="right-side-url" class="text-gray-400">https://naviko.co.kr</span>
+                         </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- 하단 CTA 섹션 -->
+    <div class="bg-gray-900 mt-20 py-20 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h3 class="text-3xl md:text-5xl font-extrabold mb-3 leading-tight">
+                딱 1분이면 됩니다.<br>
+                <span class="text-[#3b82f6]">견적 받아보세요.</span>
+            </h3>
+            <p class="text-gray-400 mb-10 mt-4">당신의 웹사이트, 전문가의 눈으로 진단해 드립니다.</p>
+            
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4">
+                <a href="mailto:test@example.com" class="cta-button px-8 py-3.5 bg-[#3b82f6] text-white rounded-full font-medium shadow-lg flex items-center">
+                    홈페이지 견적 받기 <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                </a>
+                <a href="#" class="cta-button px-8 py-3.5 bg-[#555] text-white rounded-full font-medium flex items-center bg-opacity-40 hover:bg-opacity-60 border border-gray-600">
+                    포트폴리오 보기 <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+ <script>
+  let pfProjects = [];
+  let pfActiveIndex = 0;
+
+  const pfListWrapper = document.getElementById('pfListWrapper');
+  const pfImage = document.getElementById('pfImage');
+  const pfPreviewContainer = document.getElementById('pfPreviewContainer');
+  const pfRightDesc = document.getElementById('pfRightDesc');
+  const pfRightUrl = document.getElementById('pfRightUrl');
+  const pfDirectLink = document.getElementById('pfDirectLink');
+
+  // 🔹 GitHub JSON에서 데이터 불러오기
+  const DATA_URL = "https://raw.githubusercontent.com/nmtown17/portfolio/main/portfolio.json";
+
+  window.addEventListener('load', () => {
+    fetch(DATA_URL)
+      .then(res => res.json())
+      .then(data => {
+        pfProjects = data;
+        pfActiveIndex = 0;
+        renderPfList();
+        if (pfProjects.length > 0) {
+          updatePfPreview(pfProjects[0]);
+        }
+      })
+      .catch(err => {
+        console.error("포트폴리오 데이터 로드 실패:", err);
+      });
+  });
+
+  // 아래는 기존에 쓰던 renderPfList / handlePfHover / updatePfPreview 그대로 사용
+</script>
+
+</body>
+</html>

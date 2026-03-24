@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-commerce Design & More</title>
+    <title>E-commerce Design & More | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
@@ -13,6 +13,8 @@
             font-family: 'Noto Sans KR', sans-serif;
             overflow-y: auto;
             overflow-x: hidden;
+            /* 기본 커서는 화살표로 하되 JS에서 영역별로 변경함 */
+            cursor: default;
         }
         .serif {
             font-family: 'Nanum Myeongjo', serif;
@@ -48,17 +50,19 @@
         }
         .fade-out { opacity: 0; }
         
-        /* 핵심 수정: 이미지 원본 사이즈 유지 설정 */
+        /* 이미지 원본 사이즈 유지 및 중앙 정렬 */
         #main-image {
             display: block;
             margin: 0 auto;
-            /* 원본보다 커지지 않게 설정 */
             width: auto; 
             max-width: 100%; 
             height: auto;
-            /* 테두리나 그림자가 원본을 방해하지 않도록 설정 */
             object-fit: contain;
         }
+
+        /* 클릭 안내를 위한 가상의 레이어 커서 스타일 */
+        .cursor-prev { cursor: w-resize; }
+        .cursor-next { cursor: e-resize; }
 
         /* 스크롤바 디자인 */
         ::-webkit-scrollbar { width: 6px; }
@@ -75,7 +79,7 @@
         </h1>
         
         <div class="flex gap-10 text-xs md:text-sm tracking-[0.3em] font-medium">
-            <div onclick="prevPage()" class="nav-link group" aria-label="이전">
+            <div onclick="prevPage(); event.stopPropagation();" class="nav-link group" aria-label="이전">
                 <div class="nav-btn group-hover:bg-white/10">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7" />
@@ -84,7 +88,7 @@
                 <span>PREV</span>
             </div>
             
-            <div onclick="nextPage()" class="nav-link group" aria-label="다음">
+            <div onclick="nextPage(); event.stopPropagation();" class="nav-link group" aria-label="다음">
                 <span>NEXT</span>
                 <div class="nav-btn group-hover:bg-white/10">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -95,7 +99,7 @@
         </div>
     </header>
 
-    <main class="flex-grow flex flex-col items-center px-8 md:px-16 mb-20">
+    <main id="clickable-main" class="flex-grow flex flex-col items-center px-8 md:px-16 mb-20">
         <div id="content-area" class="w-full content-container flex flex-col items-center">
             
             <div class="w-full max-w-6xl mb-10 text-left">
@@ -104,12 +108,13 @@
             </div>
 
             <div class="inline-block overflow-hidden rounded-sm shadow-2xl bg-[#111]">
+                <!-- 실제 이미지 경로가 없을 경우를 대비해 placeholder 이미지 유지 -->
                 <img 
                     id="main-image"
                     src="01.jpg" 
                     alt="포트폴리오 작품" 
                     class="transition-opacity duration-700"
-                    onerror="this.src='https://via.placeholder.com/1200x800/1a1a1a/ffffff?text=Image+Not+Found'"
+                    onerror="this.src='https://via.placeholder.com/1200x1600/1a1a1a/ffffff?text=Image+01'"
                 >
             </div>
         </div>
@@ -121,21 +126,21 @@
 
     <script>
         const projectData = [
-           { title: "오르넬리 캐리어 가방 01", subtitle: "Product Detail Design" },
-    { title: "오르넬리 캐리어 가방 02", subtitle: "Product Detail Design" },
-    { title: "오르넬리 캐리어 가방 03", subtitle: "Product Detail Design" },
-    { title: "그래핀 칫솔", subtitle: "Product Detail Design" },
-    { title: "펀치볼마중물 건시래기", subtitle: "Food Detail Design" },
-    { title: "구증구포 흑도라지 농축액스틱", subtitle: "Health Detail Design" },
-    { title: "SBS TV 아름다운 여행 이벤트 페이지", subtitle: "Event Page Design" },
-    { title: "주택분양 인테리어소개 상세페이지", subtitle: "Interior Detail Design" },
-    { title: "AI활용 모델과 배경", subtitle: "AI Creative Visualization" },
-    { title: "나비코 하키용품수입업체 로고 작업", subtitle: "Brand Identity Design" },
-    { title: "두무산촌마을 로고 작업", subtitle: "Brand Identity Design" },
-    { title: "에스엔텍솔루숀 로고 작업", subtitle: "Corporate Identity Design" },
-    { title: "AI활용 모델과 제품", subtitle: "AI Product Photography" },
-    { title: "AI활용 제품 대표컷", subtitle: "AI Visual Merchandising" },
-    { title: "AI활용 뷰티모델", subtitle: "AI Beauty Concept Art" }
+            { title: "오르넬리 캐리어 가방 01", subtitle: "Product Detail Design" },
+            { title: "오르넬리 캐리어 가방 02", subtitle: "Product Detail Design" },
+            { title: "오르넬리 캐리어 가방 03", subtitle: "Product Detail Design" },
+            { title: "그래핀 칫솔", subtitle: "Product Detail Design" },
+            { title: "펀치볼마중물 건시래기", subtitle: "Food Detail Design" },
+            { title: "구증구포 흑도라지 농축액스틱", subtitle: "Health Detail Design" },
+            { title: "SBS TV 아름다운 여행 이벤트 페이지", subtitle: "Event Page Design" },
+            { title: "주택분양 인테리어소개 상세페이지", subtitle: "Interior Detail Design" },
+            { title: "AI활용 모델과 배경", subtitle: "AI Creative Visualization" },
+            { title: "나비코 하키용품수입업체 로고 작업", subtitle: "Brand Identity Design" },
+            { title: "두무산촌마을 로고 작업", subtitle: "Brand Identity Design" },
+            { title: "에스엔텍솔루숀 로고 작업", subtitle: "Corporate Identity Design" },
+            { title: "AI활용 모델과 제품", subtitle: "AI Product Photography" },
+            { title: "AI활용 제품 대표컷", subtitle: "AI Visual Merchandising" },
+            { title: "AI활용 뷰티모델", subtitle: "AI Beauty Concept Art" }
         ];
 
         let currentIndex = 1;
@@ -155,7 +160,14 @@
                 const data = projectData[index - 1];
 
                 pageNumberEl.textContent = formattedIndex;
+                
+                // 이미지 소스 업데이트 (경로에 맞게 수정 가능)
                 mainImageEl.src = `${formattedIndex}.jpg`;
+                // 이미지 로드 에러 시 대체 텍스트 업데이트
+                mainImageEl.onerror = function() {
+                    this.src = `https://via.placeholder.com/1200x1600/1a1a1a/ffffff?text=Image+${formattedIndex}`;
+                };
+
                 projectTitleEl.textContent = data.title;
                 projectSubtitleEl.textContent = data.subtitle;
 
@@ -174,9 +186,39 @@
             updatePage(currentIndex);
         }
 
+        // 1. 키보드 화살표 이벤트
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight') nextPage();
             if (e.key === 'ArrowLeft') prevPage();
+        });
+
+        // 2. 마우스 클릭 영역 판단 (좌/우 클릭 네비게이션)
+        document.addEventListener('click', (e) => {
+            // 헤더의 버튼들이나 다른 인터랙티브 요소를 클릭한 경우 무시
+            if (e.target.closest('header') || e.target.closest('.nav-link')) return;
+
+            const halfWidth = window.innerWidth / 2;
+            if (e.clientX < halfWidth) {
+                prevPage();
+            } else {
+                nextPage();
+            }
+        });
+
+        // 3. 마우스 위치에 따른 커서 모양 변경 로직
+        document.addEventListener('mousemove', (e) => {
+            // 헤더 영역에서는 기본 커서 유지
+            if (e.clientY < 100) {
+                document.body.style.cursor = 'default';
+                return;
+            }
+
+            const halfWidth = window.innerWidth / 2;
+            if (e.clientX < halfWidth) {
+                document.body.style.cursor = 'w-resize'; // 서쪽(왼쪽) 화살표
+            } else {
+                document.body.style.cursor = 'e-resize'; // 동쪽(오른쪽) 화살표
+            }
         });
     </script>
 </body>

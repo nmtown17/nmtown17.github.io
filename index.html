@@ -19,6 +19,11 @@
     .pf-preview-container{transition:opacity 0.4s ease-in-out;}
     .pf-cta-btn{transition:transform 0.3s ease,box-shadow 0.3s ease;}
     .pf-cta-btn:hover{box-shadow:0 10px 15px -3px rgba(37,99,235,0.5);transform:translateY(-2px);}
+    
+    .other-work-card:hover .work-overlay {opacity: 1;}
+    .work-overlay {transition: opacity 0.3s ease;}
+    .other-work-card img { transition: transform 0.5s ease; }
+    .other-work-card:hover img { transform: scale(1.05); }
   </style>
 </head>
 <body class="text-gray-800">
@@ -30,8 +35,7 @@
         <nav>
           <ul class="flex space-x-8 text-gray-500 font-medium text-sm">
             <li><a href="#" class="hover:text-[#6b7c58] transition-colors">홈페이지</a></li>
-            <li><a href="#" class="hover:text-[#6b7c58] transition-colors">견적문의</a></li>
-            <li><a href="#" class="hover:text-[#6b7c58] transition-colors">고객센터</a></li>
+            <li><a href="https://nmtown17.github.io/item_02/index.html" target="_blank" class="hover:text-[#6b7c58] transition-colors">상세페이지작업</a></li>
           </ul>
         </nav>
       </header>
@@ -49,7 +53,7 @@
         <div class="relative hidden lg:flex flex-col items-center pt-4 lg:sticky lg:top-8 h-fit">
           <div id="pfPreviewContainer" class="pf-preview-container w-full flex flex-col items-center">
             <!-- 메인 이미지 -->
-            <div class="w-full aspect-video bg-gray-300 shadow-2xl rounded-sm overflow-hidden relative">
+            <div class="w-full aspect-video bg-gray-300 shadow-2xl rounded-sm overflow-hidden relative border border-gray-200">
               <img id="pfImage" src="https://placehold.co/1000x600/6b7c58/ffffff?text=Loading..." onerror="this.onerror=null;this.src='https://placehold.co/1000x600/94a3b8/ffffff?text=Image+Load+Error';" alt="Project Image" class="w-full h-full object-cover">
             </div>
             <!-- 사이트 바로가기 버튼 -->
@@ -61,33 +65,84 @@
             </div>
             <!-- 설명 영역 -->
             <div class="mt-8 text-center w-full border-t border-gray-200 pt-6">
-              <div class="text-sm font-bold text-gray-800 mb-2">URL </div>
+              <div class="text-sm font-bold text-gray-800 mb-2 uppercase tracking-widest">URL info</div>
               <div id="pfRightDesc" class="text-gray-600 text-sm leading-relaxed">
-                신영밸류배당증권투자신탁(주식) 운용<br>
-
-                <span id="pfRightUrl" class="text-gray-400">https://naviko.co.kr</span>
+                운용 정보 로딩 중...<br>
+                <span id="pfRightUrl" class="text-gray-400 font-light">https://...</span>
               </div>
             </div>
           </div>
         </div>
       </main>
+
+      <!-- 상세페이지 + 기타작업 보기 섹션 -->
+      <section class="mt-32 pb-20 border-t border-gray-300 pt-20">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+          <div>
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">상세페이지 및 <span class="text-[#6b7c58]">기타 프로젝트</span></h2>
+            <p class="text-gray-500 max-w-xl text-lg">기본 웹사이트 제작 외에도 기획형 상세페이지, 이벤트 랜딩페이지 등 고퀄리티 디자인 작업을 함께 진행합니다.</p>
+          </div>
+          <div class="mt-6 md:mt-0">
+            <a href="https://nmtown17.github.io/item_02/index.html" target="_blank" class="inline-flex items-center text-[#6b7c58] font-bold hover:underline gap-2 text-lg">
+              전체 작업물 보러가기
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 기타 작업 그리드 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="other-work-card relative group bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200 aspect-[3/4]">
+            <img src="https://nmtown17.github.io/item_02/01.jpg" class="w-full h-full object-cover object-top" alt="Detail Work 01" onerror="this.src='https://placehold.co/400x500/f3f4f6/6b7c58?text=Image+01';">
+            <div class="work-overlay absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center opacity-0 p-6 text-center">
+              <span class="text-xs text-[#6b7c58] font-bold mb-2 uppercase tracking-widest">Detail Page</span>
+              <h4 class="text-white text-xl font-bold mb-4">고급형 상세페이지 디자인</h4>
+              <a href="https://nmtown17.github.io/item_02/index.html" target="_blank" class="px-6 py-2 bg-white text-gray-900 text-sm font-bold rounded-full hover:bg-[#6b7c58] hover:text-white transition-colors">샘플 보기</a>
+            </div>
+          </div>
+          <div class="other-work-card relative group bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200 aspect-[3/4]">
+            <img src="https://nmtown17.github.io/item_02/02.jpg" class="w-full h-full object-cover object-top" alt="Detail Work 02" onerror="this.src='https://placehold.co/400x500/f3f4f6/6b7c58?text=Image+02';">
+            <div class="work-overlay absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center opacity-0 p-6 text-center">
+              <span class="text-xs text-[#6b7c58] font-bold mb-2 uppercase tracking-widest">Branding</span>
+              <h4 class="text-white text-xl font-bold mb-4">브랜드 소개 랜딩페이지</h4>
+              <a href="https://nmtown17.github.io/item_02/index.html" target="_blank" class="px-6 py-2 bg-white text-gray-900 text-sm font-bold rounded-full hover:bg-[#6b7c58] hover:text-white transition-colors">샘플 보기</a>
+            </div>
+          </div>
+          <div class="other-work-card relative group bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200 aspect-[3/4]">
+            <img src="https://nmtown17.github.io/item_02/03.jpg" class="w-full h-full object-cover object-top" alt="Detail Work 03" onerror="this.src='https://placehold.co/400x500/f3f4f6/6b7c58?text=Image+03';">
+            <div class="work-overlay absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center opacity-0 p-6 text-center">
+              <span class="text-xs text-[#6b7c58] font-bold mb-2 uppercase tracking-widest">Product</span>
+              <h4 class="text-white text-xl font-bold mb-4">제품 홍보 기획 디자인</h4>
+              <a href="https://nmtown17.github.io/item_02/index.html" target="_blank" class="px-6 py-2 bg-white text-gray-900 text-sm font-bold rounded-full hover:bg-[#6b7c58] hover:text-white transition-colors">샘플 보기</a>
+            </div>
+          </div>
+          <div class="other-work-card relative group bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200 aspect-[3/4]">
+            <img src="https://nmtown17.github.io/item_02/04.jpg" class="w-full h-full object-cover object-top" alt="Detail Work 04" onerror="this.src='https://placehold.co/400x500/f3f4f6/6b7c58?text=Image+04';">
+            <div class="work-overlay absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center opacity-0 p-6 text-center">
+              <span class="text-xs text-[#6b7c58] font-bold mb-2 uppercase tracking-widest">Promotion</span>
+              <h4 class="text-white text-xl font-bold mb-4">이벤트 및 배너 작업</h4>
+              <a href="https://nmtown17.github.io/item_02/index.html" target="_blank" class="px-6 py-2 bg-white text-gray-900 text-sm font-bold rounded-full hover:bg-[#6b7c58] hover:text-white transition-colors">샘플 보기</a>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
 
     <!-- 하단 CTA -->
-    <div class="bg-gray-900 mt-20 py-20 text-white">
+    <div class="bg-gray-900 mt-0 py-24 text-white">
       <div class="container mx-auto px-4 text-center">
-        <h3 class="text-3xl md:text-5xl font-extrabold mb-3 leading-tight">
+        <h3 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
           딱 1분이면 됩니다.<br><span class="text-[#3b82f6]">견적 받아보세요.</span>
         </h3>
-        <p class="text-gray-400 mb-10 mt-4">당신의 웹사이트, 전문가의 눈으로 진단해 드립니다.</p>
-        <div class="flex flex-col md:flex-row justify-center items-center gap-4">
-          <a href="mailto:test@example.com" class="pf-cta-btn px-8 py-3.5 bg-[#3b82f6] text-white rounded-full font-medium shadow-lg flex items-center">
+        <p class="text-gray-400 mb-12 mt-4 text-lg">당신의 웹사이트, 전문가의 눈으로 진단해 드립니다.</p>
+        <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+          <a href="mailto:test@example.com" class="pf-cta-btn px-10 py-5 bg-[#3b82f6] text-white rounded-full font-bold text-lg shadow-lg flex items-center">
             홈페이지 견적 받기
-            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+            <svg class="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
           </a>
-          <a href="#" class="pf-cta-btn px-8 py-3.5 bg-[#555] text-white rounded-full font-medium flex items-center bg-opacity-40 hover:bg-opacity-60 border border-gray-600">
-            포트폴리오 보기
-            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+          <a href="#" class="pf-cta-btn px-10 py-5 bg-white bg-opacity-10 text-white rounded-full font-bold text-lg flex items-center border border-gray-700 hover:bg-opacity-20">
+            상담 채널톡 연결
+            <svg class="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
           </a>
         </div>
       </div>
@@ -96,7 +151,7 @@
 
   <script>
   const pfProjects=[
-    {name:"나비코 미스터빅하키",url:"https://naviko.co.kr",desc:"나비코 미스터빅하키",placeholder:"나비코 미스터빅하키"},
+    {name:"나비코 미스터빅하키",url:"https://naviko.co.kr",desc:"나비코 미스터빅하키 브랜드 사이트",placeholder:"나비코 미스터빅하키"},
     {name:"현대전기",url:"https://hdcne.co.kr",desc:"전기 공사 및 산업 설비 전문 웹사이트 제작",placeholder:"현대전기 hdcne"},
     {name:"펀치볼마중물",url:"https://greatfarm.kr",desc:"농산물 직거래 및 체험 농장 홈페이지 제작",placeholder:"펀치볼마중물 greatfarm"},
     {name:"화천목재",url:"https://hcwood.co.kr",desc:"친환경 건축 목재 전문 기업 사이트 제작",placeholder:"화천목재 hcwood"},
@@ -119,7 +174,7 @@
     {name:"설악산아로니아.kr",url:"https://xn--9i1bu9hz2hinal4ocac.kr/",desc:"아로니아 재배 및 가공 제품 홍보 홈페이지 제작",placeholder:"설악산아로니아 aronia"}
   ];
 
-  const PF_IMG_BASE="https://nmtown17.github.io/img"; // 🔹 이미지 기본 경로
+  const PF_IMG_BASE="https://nmtown17.github.io/img"; 
 
   let pfActiveIndex=0;
   const pfListWrapper=document.getElementById('pfListWrapper');
@@ -129,11 +184,10 @@
   const pfRightUrl=document.getElementById('pfRightUrl');
   const pfDirectLink=document.getElementById('pfDirectLink');
 
-  // index →  pp_01.jpg ... 로 매핑
   function getPfImageUrl(index){
-  const num = String(index + 1).padStart(2, '0');  // 0→01, 1→02, ...
-  return `${PF_IMG_BASE}/pp_${num}.jpg`;
-}
+    const num = String(index + 1).padStart(2, '0');
+    return `${PF_IMG_BASE}/pp_${num}.jpg`;
+  }
 
   window.addEventListener('load',()=>{
     renderPfList();
@@ -169,7 +223,7 @@
       const details=document.createElement('div');
       details.className='pf-details'+(isActive?' pf-open':'');
 
-      const thumbUrl=getPfImageUrl(index); // 🔹 모바일 썸네일도 실제 이미지 사용
+      const thumbUrl=getPfImageUrl(index);
 
       const inner=`
         <div class="flex items-start pt-3 pl-1">
@@ -192,10 +246,10 @@
               <div class="flex items-start gap-3">
                 <div class="flex-1 text-[12px] text-gray-700 leading-relaxed">
                   ${project.desc}<br>
-                  <span class="text-gray-400">${project.url}</span>
+                  <span class="text-gray-400 font-light">${project.url}</span>
                 </div>
                 <div class="w-24 sm:w-28 aspect-video bg-gray-200 shadow-md overflow-hidden rounded">
-                  <img src="${thumbUrl}" alt="${project.name}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/240x135/6b7c58/ffffff?text=${encodeURIComponent(project.placeholder)}';">
+                  <img src="${thumbUrl}" alt="${project.name}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/240x135/6b7c58/ffffff?text=Image';">
                 </div>
               </div>
             </div>
@@ -221,11 +275,10 @@
     if(!pfPreviewContainer)return;
     pfPreviewContainer.style.opacity='0';
     setTimeout(()=>{
-      const imgUrl=getPfImageUrl(pfActiveIndex); // 🔹 오른쪽 큰 이미지도 실제 경로 사용
+      const imgUrl=getPfImageUrl(pfActiveIndex); 
       pfImage.src=imgUrl;
       pfDirectLink.href=project.url.startsWith('http')?project.url:'https://'+project.url;
       pfRightDesc.innerHTML=`${project.desc}<br><span id="pfRightUrl" class="text-gray-400 font-light">${project.url}</span>`;
-      pfRightUrl.textContent=project.url;
       pfPreviewContainer.style.opacity='1';
     },200);
   }
@@ -233,4 +286,3 @@
 
 </body>
 </html>
-

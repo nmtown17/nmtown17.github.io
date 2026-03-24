@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Design & More</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Noto Sans KR', sans-serif;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        .serif {
+            font-family: 'Nanum Myeongjo', serif;
+        }
+        header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 50;
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            opacity: 0.5;
+            cursor: pointer;
+        }
+        .nav-link:hover {
+            opacity: 1;
+        }
+        .nav-btn {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .content-container {
+            transition: opacity 0.5s ease;
+        }
+        .fade-out { opacity: 0; }
+        
+        /* 핵심 수정: 이미지 원본 사이즈 유지 설정 */
+        #main-image {
+            display: block;
+            margin: 0 auto;
+            /* 원본보다 커지지 않게 설정 */
+            width: auto; 
+            max-width: 100%; 
+            height: auto;
+            /* 테두리나 그림자가 원본을 방해하지 않도록 설정 */
+            object-fit: contain;
+        }
+
+        /* 스크롤바 디자인 */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <header class="flex justify-between items-center px-8 py-10 md:px-16">
+        <h1 class="text-2xl md:text-3xl font-light tracking-widest uppercase serif">
+            E-commerce Design & More <span id="page-number" class="text-sm italic opacity-50 ml-2">01</span>
+        </h1>
+        
+        <div class="flex gap-10 text-xs md:text-sm tracking-[0.3em] font-medium">
+            <div onclick="prevPage()" class="nav-link group" aria-label="이전">
+                <div class="nav-btn group-hover:bg-white/10">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </div>
+                <span>PREV</span>
+            </div>
+            
+            <div onclick="nextPage()" class="nav-link group" aria-label="다음">
+                <span>NEXT</span>
+                <div class="nav-btn group-hover:bg-white/10">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow flex flex-col items-center px-8 md:px-16 mb-20">
+        <div id="content-area" class="w-full content-container flex flex-col items-center">
+            
+            <div class="w-full max-w-6xl mb-10 text-left">
+                <p id="project-subtitle" class="text-sm tracking-[0.4em] uppercase mb-2 opacity-60 font-light">E-commerce Design & More</p>
+                <h2 id="project-title" class="text-3xl md:text-5xl serif font-bold tracking-tight">오르넬리 캐리어 가방 01</h2>
+            </div>
+
+            <div class="inline-block overflow-hidden rounded-sm shadow-2xl bg-[#111]">
+                <img 
+                    id="main-image"
+                    src="01.jpg" 
+                    alt="포트폴리오 작품" 
+                    class="transition-opacity duration-700"
+                    onerror="this.src='https://via.placeholder.com/1200x800/1a1a1a/ffffff?text=Image+Not+Found'"
+                >
+            </div>
+        </div>
+    </main>
+
+    <footer class="p-8 text-center text-[10px] tracking-widest uppercase opacity-30 mt-auto">
+        &copy; 2024 Visual Portfolio Archive. All Rights Reserved.
+    </footer>
+
+    <script>
+        const projectData = [
+           { title: "오르넬리 캐리어 가방 01", subtitle: "Product Detail Design" },
+    { title: "오르넬리 캐리어 가방 02", subtitle: "Product Detail Design" },
+    { title: "오르넬리 캐리어 가방 03", subtitle: "Product Detail Design" },
+    { title: "그래핀 칫솔", subtitle: "Product Detail Design" },
+    { title: "펀치볼마중물 건시래기", subtitle: "Food Detail Design" },
+    { title: "구증구포 흑도라지 농축액스틱", subtitle: "Health Detail Design" },
+    { title: "SBS TV 아름다운 여행 이벤트 페이지", subtitle: "Event Page Design" },
+    { title: "주택분양 인테리어소개 상세페이지", subtitle: "Interior Detail Design" },
+    { title: "AI활용 모델과 배경", subtitle: "AI Creative Visualization" },
+    { title: "나비코 하키용품수입업체 로고 작업", subtitle: "Brand Identity Design" },
+    { title: "두무산촌마을 로고 작업", subtitle: "Brand Identity Design" },
+    { title: "에스엔텍솔루숀 로고 작업", subtitle: "Corporate Identity Design" },
+    { title: "AI활용 모델과 제품", subtitle: "AI Product Photography" },
+    { title: "AI활용 제품 대표컷", subtitle: "AI Visual Merchandising" },
+    { title: "AI활용 뷰티모델", subtitle: "AI Beauty Concept Art" }
+        ];
+
+        let currentIndex = 1;
+        const totalImages = projectData.length;
+
+        const pageNumberEl = document.getElementById('page-number');
+        const mainImageEl = document.getElementById('main-image');
+        const projectTitleEl = document.getElementById('project-title');
+        const projectSubtitleEl = document.getElementById('project-subtitle');
+        const contentArea = document.getElementById('content-area');
+
+        function updatePage(index) {
+            contentArea.classList.add('fade-out');
+            
+            setTimeout(() => {
+                const formattedIndex = index.toString().padStart(2, '0');
+                const data = projectData[index - 1];
+
+                pageNumberEl.textContent = formattedIndex;
+                mainImageEl.src = `${formattedIndex}.jpg`;
+                projectTitleEl.textContent = data.title;
+                projectSubtitleEl.textContent = data.subtitle;
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                contentArea.classList.remove('fade-out');
+            }, 300);
+        }
+
+        function nextPage() {
+            currentIndex = currentIndex >= totalImages ? 1 : currentIndex + 1;
+            updatePage(currentIndex);
+        }
+
+        function prevPage() {
+            currentIndex = currentIndex <= 1 ? totalImages : currentIndex - 1;
+            updatePage(currentIndex);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextPage();
+            if (e.key === 'ArrowLeft') prevPage();
+        });
+    </script>
+</body>
+</html>
